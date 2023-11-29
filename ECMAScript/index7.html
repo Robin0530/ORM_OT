@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>js 기초 문법 실습</title>
+
+        <script>
+            // // 1.변수 할당 재선언 데이터 타입 기본 이론 설명
+            // var name2 = "우성우" // 문자열
+            // var age = 30;       // 정수
+            // var remain = 0.5;   // 실수
+            // var bool = true;    // 참과 거짓 자료형
+
+            // // js 에서 출력문
+            // console.log(name2);
+            // console.log(age);
+            // console.log(remain);
+            // console.log(bool);
+            
+            // alert(age)
+            // alert("돈까스만 성인 4명 이상 혹은 a카드로 결제시 할인 적용")
+            // const people1 = prompt("인원을 입력하세요");
+            // const food = prompt("음식명 입력");
+            // const cardType = prompt("카드타입 입력");
+
+            // if(food === '돈까스' && (people1 === '4' || cardType ==='a카드')){
+            //     alert("할인적용");
+            // } else {
+            //     alert("할인대상이 아닙니다")
+            // }
+
+            // 놀이공원 할인 
+            // 삼성카드,신한카드의 실적이 30만원 이상이면 3만원 할인이고, 30만원 미만이면 1만원 할인
+
+            // const cardType = prompt("카드를 입력해주세요");
+            // const limitMoney = 350000;
+
+            // if ((cardType === "삼성카드" || cardType === "신한카드") && limitMoney >= 300000 ){
+            //     alert("3만원 할인")
+            // } else {
+            //     alert("1만원 할인");
+            // }
+
+            // do.. while  문
+            // while(true) {
+            //     let answer = confirm('계속 할까요?');
+            //     if(!answer) {
+            //         break;
+            //     }
+            // }
+
+            // switch 문
+            // let fruis = prompt('무슨 과일을 사고 싶나요?');
+
+            // switch(fruis) {
+            //     case '사과' :
+            //         console.log('100원 입니다.');
+            //         break;
+            //     case '바나나':
+            //         console.log('200원 입니다.')
+            //         break;
+            //     case '키위':
+            //         console.log('300원 입니다.')
+            //         break;
+            //     default : 
+            //         console.log('그런 과일은 없습니다.');
+            // }
+
+            // 함수 작성
+            // function showError(){
+            //     alert('에러가 발생했습니다. 다시 시도해주세요. ');
+            // }
+
+            // showError();
+
+            // 매개변수가 있는 함수
+            // function sayHello(name) {
+            //     let msg = `Hello ~ `;
+            //     if (name) {
+            //         // msg = `Hello, ${name}`;
+            //         msg += name;
+            //     }
+            //     console.log(msg);
+            // }
+            
+            // sayHello();
+            // sayHello('보람');
+
+            // OR
+            // function sayHello(name) {
+            //     let newName = name || 'friend';
+            //     let msg = `Hello, ${newName}`
+            //     console.log(msg);
+            // }
+
+            // sayHello();
+            // sayHello('jane');
+
+            // default value;
+            // function sayHello (name = 'friend' ) {
+            //     let msg = `hello, ${name}`;
+            //     console.log(msg)
+            // }
+
+            // sayHello();
+            // sayHello('jane');
+
+            // return 으로 값 반환
+            // function add(num1, num2) {
+            //     return num1 + num2;
+            // }
+
+            // const result = add(2,3);
+            // console.log(result);
+
+            // function showError () {
+            //     alert('에러가 발생했습니다.');
+            //     return;
+            //     alert('이 코드는 절대 실행되지 않습니다.');
+            // }
+
+            // const result = showError();
+            // console.log(result);
+
+            // 함수 표현식 : 아래처럼 쓰면 에러
+            // showError();
+
+            // let showError = function() {
+            //     console.log('error');
+            // }
+
+            // 함수 선언문
+            // showError();
+
+            // function showError() {
+            //     console.log('error');
+            // }
+            // 화살표 함수로 변경
+            let showError = () => {
+                console.log('error')
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1>js basic 진행</h1>
+    </body>
+</html>
