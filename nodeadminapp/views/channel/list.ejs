@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>채널목록 조회 페이지</title>
+    </head>
+
+    <body>
+        <h1>채널목록 조회 페이지</h1>
+        
+        <!-- 채널정보 조회옵션 영역 -->
+        <form action="/channel/list" method="post">
+            <table>
+                <tr>
+                    <td>조회옵션 채널명</td>
+                    <td><input type="text" name="channel_name"></td>
+                </tr>
+                
+                <tr>
+                    <td>조회</td>
+                    <td><input type="submit" value="조회하기"></td>
+                </tr>
+            </table>
+        </form>
+        
+        <!-- 조회결과 목록 페이지 표시영역 -->
+        <table>
+            <tr>
+                <td>채널고유번호</td>
+                <td>채널명</td>
+                <td>기타</td>
+            </tr>
+
+            <% for(var i =0; i < channelList.length; i++) { %>
+
+                <tr>
+                    <!-- 수정페이지 이동시 URL 파라메터 방식으로 페이지이동 링크를 생성해주는 예시 -->
+                    <td><a href="/channel/modify/<%=channelList[i].channel_id%>"><%=channelList[i].channel_id%></a></td>
+
+                    <!-- 수정페이지 이동시 쿼리스트링 방ㅅ기으로 페이지 이동링크를 생성해주는 예시 -->
+                    <td><a href="/channel/modify?cid=<%=channelList[i].channel_id%>&test=테스트"><%=channelList[i].channel_name%></a></td>
+                    <td>-</td>
+                </tr>
+            <% } %>
+
+        </table>
+
+    </body>
+    
+</html>

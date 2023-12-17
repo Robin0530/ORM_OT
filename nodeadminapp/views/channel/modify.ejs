@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>채널정보 확인 및 수정/삭제</title>
+    </head>
+
+
+    <body>
+        <h1>채널정보 확인 및 수정/삭제 웹 페이지</h1>
+
+        <!-- action="어디로 보낼지 주소" method="보내는방식" -->
+        <form action="/channel/modify" method="post">
+            <table>
+                <tr>
+                    <td>채널번호</td>
+                    <td><input type="text" name="channel_id" value="<%=channel.channel_id%>"></td>
+                </tr>
+                
+                <tr>
+                    <td>채널명</td>
+                    <td><input type="text" name="channel_name" value="<%=channel.channel_name%>"></td>
+                </tr>
+                
+                <tr>
+                    <td>저장버튼영역</td>
+                    <td><input type="submit" value="수정"></td>
+                </tr>
+            </table>
+        </form>
+
+    </body>
+</html>

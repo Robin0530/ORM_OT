@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>회원가입 웹페이지</title>
+    </head>
+
+
+    <body>
+        <h1>회원가입 웹페이지</h1>
+        <p>회원 가입 페이지 내용입니다. 가입폼을 조금후에 정의합니다.</p>
+
+        <!-- action="어디로 보낼지 주소" method="보내는방식" -->
+        <form action="/member/entry" method="post">
+            <table>
+                <tr>
+                    <td>아이디(메일)</td>
+                    <td><input type="text" name="memberid"></td>
+                </tr>
+
+                <tr>
+                    <td>암호</td>
+                    <td><input type="password" name="password"></td>
+                </tr>
+
+                <tr>
+                    <td>이름</td>
+                    <td><input type="text" name="name"></td>
+                </tr>
+                
+                <tr>
+                    <td>저장버튼영역</td>
+                    <td><input type="submit" value="가입하기"></td>
+                </tr>
+            </table>
+        </form>
+
+    </body>
+</html>
