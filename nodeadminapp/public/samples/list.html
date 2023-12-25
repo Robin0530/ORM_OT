@@ -87,13 +87,13 @@
             <!--우측 상단 헤더 영역 -->
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>채널 정보관리</h2>
+                    <h2>관리자정보관리</h2>
                     <ol class="breadcrumb">
                         <li>
-                            <a href="/">Home ></a>
+                            <a href="/Home/Index">Home</a>
                         </li>
                         <li>
-                            <a>채널정보관리 ></a>
+                            <a>관리자정보관리</a>
                         </li>
                         <li class="active">
                             <strong>조회</strong>
@@ -108,44 +108,33 @@
             <!--우측 콘텐츠 영역 -->
             <div class="wrapper wrapper-content">
 
-                <!-- 채널 정보조회 옵션 및 조회 영역 -->
-                <form action="/channel/list" method="post">
-                    <div class="ibox-content m-b-sm border-bottom">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="OrderNo">채널분류</label>
-                                    <select name="catrgory_code" class="form-control">
-                                        <option value="0">오픈채널</option>
-                                        <option value="1">개인채널</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="OrderName">채널명</label>
-                                    <input type="text" name="channel_name" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="control-label" for="OrderNo">오픈상태</label>
-                                    <select name="catrgory_code" class="form-control">
-                                        <option value="0">일시중지</option>
-                                        <option value="1">오픈</option>
-                                        <option value="1">삭제</option>
-                                    </select>
-                                </div>
+                <div class="ibox-content m-b-sm border-bottom">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label" for="OrderNo">관리자명</label>
+                                <input type="text" class="form-control">
                             </div>
                         </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">조회</button>
-                            <a href="/channel/create" class="btn btn-info">신규</a>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label" for="OrderName">아이디</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label" for="MobileNo">사용여부</label>
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
                     </div>
-                </form>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary">조회</button>
+                        <a href="#" class="btn btn-info">신규</a>
+                    </div>
+                </div>
 
-                <!-- 채널 정보조회 결과 목록 표시 영역 -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
@@ -155,37 +144,87 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th width="5%">순번</th>
-                                                <th width="10%">채널분류</th>
-                                                <th width="15%">채널명</th>
-                                                <th width="30%">채널간략소개</th>
-                                                <th width="10%">채널접속자수</th>
-                                                <th width="10%">오픈상태</th>
-                                                <th width="10%">등록일시</th>
-                                                <th width="10%">등록자</th>
+                                                <th width="10%">아이디</th>
+                                                <th width="10%">성명</th>
+                                                <th width="20%">메일주소</th>
+                                                <th width="20%">소속회사</th>
+                                                <th width="10%">부서</th>
+                                                <th width="10%">사용여부</th>
+                                                <th width="20%">등록일</th>
                                             </tr>
                                         </thead>
                                         <tbody class="hoverTblBody">
 
                                             <tr>
-                                                <td><a href="/channel/modify/1">1</a></td>
-                                                <td><a href="/channel/modify/1">오픈채널</a></td>
-                                                <td>자바스크립트 채널오픈</td>
-                                                <td>자바스크립트 함께 공부하는 채널입니다.</td>
-                                                <td>30</td>
-                                                <td>오픈</td>
-                                                <td>2023-12-25</td>
-                                                <td>Robin</td>
+                                                <td><a href="#">code.AdminID</a></td>
+                                                <td><a href="#">code.AdminName</a></td>
+                                                <td>code.AdminEmail</td>
+                                                <td>code.Company</td>
+                                                <td>code.CompanyPosition</td>
+                                                <td>code.UseYN</td>
+                                                <td>Date</td>
                                             </tr>
+
                                             <tr>
-                                                <td><a href="/channel/modify/1">2</a></td>
-                                                <td><a href="/channel/modify/1">개인채널</a></td>
-                                                <td>다이어트</td>
-                                                <td>혼자하는 운동</td>
-                                                <td>1</td>
-                                                <td>오픈</td>
-                                                <td>2023-12-25</td>
-                                                <td>Robin</td>
+                                                <td><a href="#">code.AdminID</a></td>
+                                                <td><a href="#">code.AdminName</a></td>
+                                                <td>code.AdminEmail</td>
+                                                <td>code.Company</td>
+                                                <td>code.CompanyPosition</td>
+                                                <td>code.UseYN</td>
+                                                <td>Date</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#">code.AdminID</a></td>
+                                                <td><a href="#">code.AdminName</a></td>
+                                                <td>code.AdminEmail</td>
+                                                <td>code.Company</td>
+                                                <td>code.CompanyPosition</td>
+                                                <td>code.UseYN</td>
+                                                <td>Date</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#">code.AdminID</a></td>
+                                                <td><a href="#">code.AdminName</a></td>
+                                                <td>code.AdminEmail</td>
+                                                <td>code.Company</td>
+                                                <td>code.CompanyPosition</td>
+                                                <td>code.UseYN</td>
+                                                <td>Date</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#">code.AdminID</a></td>
+                                                <td><a href="#">code.AdminName</a></td>
+                                                <td>code.AdminEmail</td>
+                                                <td>code.Company</td>
+                                                <td>code.CompanyPosition</td>
+                                                <td>code.UseYN</td>
+                                                <td>Date</td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td><a href="#">code.AdminID</a></td>
+                                                <td><a href="#">code.AdminName</a></td>
+                                                <td>code.AdminEmail</td>
+                                                <td>code.Company</td>
+                                                <td>code.CompanyPosition</td>
+                                                <td>code.UseYN</td>
+                                                <td>Date</td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td><a href="#">code.AdminID</a></td>
+                                                <td><a href="#">code.AdminName</a></td>
+                                                <td>code.AdminEmail</td>
+                                                <td>code.Company</td>
+                                                <td>code.CompanyPosition</td>
+                                                <td>code.UseYN</td>
+                                                <td>Date</td>
                                             </tr>
 
                                         </tbody>

@@ -84,19 +84,19 @@
                 </nav>
             </div>
 
-            <!--우측 콘텐츠 헤더영역 -->
+            <!--우측 상단 헤더 영역 -->
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-10">
-                    <h2>채널정보등록</h2>
+                    <h2>사용자 정보관리</h2>
                     <ol class="breadcrumb">
                         <li>
                             <a href="/">Home ></a>
                         </li>
                         <li>
-                            <a>채널정보관리 ></a>
+                            <a>사용자정보관리 ></a>
                         </li>
                         <li class="active">
-                            <strong>등록</strong>
+                            <strong>조회</strong>
                         </li>
                     </ol>
                 </div>
@@ -107,82 +107,89 @@
 
             <!--우측 콘텐츠 영역 -->
             <div class="wrapper wrapper-content">
-                <form action="/channel/create" method="post">
+
+                <!-- 사용자 정보조회 옵션 및 조회 영역 -->
+                <form action="/member/list" method="post">
                     <div class="ibox-content m-b-sm border-bottom">
-                        <!-- 첫번째 row -->
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="control-label">채널분류</label>
-                                    <select name="catrgory_code" class="form-control">
-                                        <option value="0">오픈채널</option>
-                                        <option value="1">개인채널</option>
-                                    </select>
+                                    <label class="control-label" for="OrderNo">메일주소</label>
+                                    <input type="text" name="email" class="form-control">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="control-label">채널명</label>
-                                    <input type="text" name="channel_name" class="form-control">
+                                    <label class="control-label" for="OrderName">이름</label>
+                                    <input type="text" name="name" class="form-control">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="control-label">비밀번호</label>
-                                    <input type="password" name="password" class="form-control">
+                                    <label class="control-label" for="MobileNo">전화번호</label>
+                                    <input type="tel" name="telephone" class="form-control">
                                 </div>
                             </div>
                         </div>
-                        <!-- 두번째 row -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label class="control-label">채널간략소개</label>
-                                    <textarea name="user_limite" id="user_limite" cols="30" rows="10" class="form-control"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 세번째 row -->
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="control-label">사진업로드</label>
-                                    <input type="file" name="file" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="control-label" for="OrderNo">오픈상태</label>
-                                    <select name="catrgory_code" class="form-control">
-                                        <option value="0">일시중지</option>
-                                        <option value="1" selected>오픈</option>
-                                        <option value="1">삭제</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="control-label">등록자</label>
-                                    <input type="text" class="form-control" name="reg_member_id" value="robin" readonly>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="control-label">등록일시</label>
-                                    <input type="text" class="form-control" value="2023-12-25" readonly>
-                                </div>
-                            </div>
-
-                        </div>
-
-
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">저장</button>
-                            <a href="/member/list" class="btn btn-info">목록</a>
+                            <button type="submit" class="btn btn-primary">조회</button>
+                            <a href="/member/entry" class="btn btn-info">신규</a>
                         </div>
                     </div>
                 </form>
+
+                <!-- 사용자 정보조회 결과 목록 표시 영역 -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
+                                <div class="table-responsive">
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th width="10%">순번</th>
+                                                <th width="10%">메일주소</th>
+                                                <th width="20%">이름</th>
+                                                <th width="20%">전화번호</th>
+                                                <th width="10%">생년월일</th>
+                                                <th width="10%">사용상태</th>
+                                                <th width="20%">등록일자</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="hoverTblBody">
+
+                                            <tr>
+                                                <td><a href="/member/modify/1">1</a></td>
+                                                <td><a href="/member/modify/1">test1@test.co.kr</a></td>
+                                                <td>이보람</td>
+                                                <td>010-1111-1111</td>
+                                                <td>91.05.30</td>
+                                                <td>이용중</td>
+                                                <td>2023-12-25</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a href="#">2</a></td>
+                                                <td><a href="#">test1@test.co.kr</a></td>
+                                                <td>홍길동</td>
+                                                <td>010-2222-2222</td>
+                                                <td>91.02.2</td>
+                                                <td>일시중지</td>
+                                                <td>2023-02-22</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
             </div>
 
             <!--우측 하단 풋터 영역-->
@@ -214,9 +221,11 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+
     <script>
 
     </script>
+
 
 </body>
 

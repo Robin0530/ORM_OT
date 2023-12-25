@@ -59,6 +59,36 @@ router.post('/entry', async(req, res, next) => {
 
 
 
+// 회원목록 페이지 요청 라우팅메소드
+router.get('/list', function(req, res, next) {
+
+    res.render('member/list.ejs');
+});
+
+
+// 회원정보조회 처리 라우팅 메소드
+router.post('/list', function(req, res, next) {
+
+    res.render('member/list.ejs');
+});
+
+
+
+
+// 회원정보 수정 웹페이지 요청 라우팅메소드
+router.get('/modify/:mid', function(req, res, next) {
+
+    res.render('member/modify.ejs');
+});
+
+
+// 회원정보 수정처리 라우팅메소드
+router.post('/modify/:mid', function(req, res, next) {
+
+    res.redirect('/member/list');
+});
+
+
 
 // 라우터파일내의 라우터 객체를 반드시 모듈외부로 기능을 노출해야합니다.
 module.exports = router;
