@@ -11,14 +11,14 @@ module.exports = function(sequelize, DataTypes) {
             },
             community_id: {
                 type: DataTypes.INTEGER,
-                primaryKey: true,
+                // primaryKey: true,
                 allowNull: false,
                 comment: '커뮤니티고유번호',
             },
             category_code: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
-                comment: '채널분류코드',
+                comment: '채널분류코드(0:그룹채널, 1:일대일전용채널)',
             },
             channel_name: {
                 type: DataTypes.STRING(100),
@@ -27,8 +27,8 @@ module.exports = function(sequelize, DataTypes) {
             },
             user_limit: {
                 type: DataTypes.INTEGER,
-                allowNull: true,
-                comment: '동시채널접속자수',
+                allowNull: false,
+                comment: '접속자 제한수',
             },
             channel_img_path: {
                 type: DataTypes.STRING(200),
@@ -43,7 +43,7 @@ module.exports = function(sequelize, DataTypes) {
             channel_state_code: {
                 type: DataTypes.TINYINT,
                 allowNull: false,
-                comment: '채널오픈상태코드',
+                comment: '채널오픈상태코드(0:사용안함, 1:사용함)',
             },
             reg_date: {
                 type: DataTypes.DATE,

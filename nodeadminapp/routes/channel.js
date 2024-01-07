@@ -9,6 +9,8 @@
 var express = require('express');
 var router = express.Router();
 
+var db = require('../models/index');
+
 // 채팅방 채널 생성 웹페이지 요청 라우팅 메소드
 // http://localhost:3000/channel/create
 router.get('/create', async(req, res)=> {

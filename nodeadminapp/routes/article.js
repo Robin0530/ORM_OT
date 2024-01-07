@@ -12,9 +12,13 @@ var moment = require('moment');
 // ORM db객체를 참조한다.
 // db객체를 선언할 때 반드시 var로 선언한다.
 var db = require('../models/index.js');
-// Op객체 생성
-const Op = db.sequelize.Op;
 
+// DB에 명령걸때는 소문자sequelize
+const { QueryTypes } = require('sequelize');
+var sequelize = db.sequelize;
+
+// Op객체 생성(조건 걸때) 대문자 Sequelize는 객체정보
+var Op = db.Sequelize.Op;
 
 /* 
 게시글 정보관리 라우팅 기능 제공
@@ -25,7 +29,46 @@ const Op = db.sequelize.Op;
 router.get('/list', async(req, res, next) => {
 
   // article 테이블의 모든 게시글 목록을 조회해온다.
-  var articles = await db.Article.findAll();
+  // var articles = await db.Article.findAll({})
+
+  // 여러 조건 걸어보기
+  var articles = await db.Article.findAll({
+    attributes:['article_id', 'title', 'article_type_code', 'view_count', 'ip_address', 'is_display_code', 'edit_date'],
+    // where:{article_type_code:0, is_display_code:1, view_count:{[Op.not]:1}},
+    order:[
+      ['article_id', 'DESC']
+    ]
+  });
+
+  // count 카운트! 몇개인지
+  // var articles = await db.Article.count({where:{article_type_code:0}});
+  // console.log(articles);
+
+  // ORM 기반 SQL
+  /* 
+  var articleTypeCode = 0;
+  var sqlQuery = `SELECT * FROM article WHERE article_type_code=${articleTypeCode}`;
+
+  var articles = await sequelize.query(sqlQuery,{
+    raw:true,
+    type: QueryTypes.SELECT,
+  })
+  */
+
+  // 저장 프로시져  
+  // var articleTypeCode = 0;
+  // var articles = await sequelize.query(
+  //   'CALL SP_MEMBER_SEARCH_ALL (:P_ARTICLE_TYPE_CODE)',
+  //   {replacements: {P_ARTICLE_TYPE_CODE: articleTypeCode}}
+  // );
+  
+
+
+  // 게시글 고유번호가 1번인 단일게시글 정보조회
+  // var article = await db.Article.findOne({where:{article_id:1}});
+  // total_count 동적속성을 추가하고 값을 할당한다.
+  // article.total_count = 10;
+
 
   // 조회결과 모든 게시글 데이터를 뷰에 전달.
   res.render('article/list', {articles, moment});
