@@ -40,6 +40,14 @@ router.get('/list', async(req, res, next) => {
     ]
   });
 
+  // var channels = await db.Channel.findAll({
+  //   attributes:['channel_id','category_code','channel_name','reg_date'],
+  //   where:{category_code:{[Op.not]:0}},
+  //   order:[
+  //     ['channel_id','ACS']
+  //   ]
+  // })
+
   // count 카운트! 몇개인지
   // var articles = await db.Article.count({where:{article_type_code:0}});
   // console.log(articles);
