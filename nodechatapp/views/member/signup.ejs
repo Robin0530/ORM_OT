@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Meta -->
+		<meta name="description" content="Quick Chat App">
+		<meta name="author" content="ParkerThemes">
+		<link rel="shortcut icon" href="/img/fav.png" />
+
+		<!-- Title -->
+		<title>Quick Chat App</title>
+
+
+		<!-- *************
+			************ Common Css Files *************
+		************ -->
+		<!-- Bootstrap css -->
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		
+		<!-- Main css -->
+		<link rel="stylesheet" href="/css/main.css">
+
+
+		<!-- *************
+			************ Vendor Css Files *************
+		************ -->
+
+	</head>
+	<body class="authentication">
+
+		<!-- *************
+			************ Login container start *************
+		************* -->
+		<div class="login-container">
+			
+			<!-- Row start -->
+			<div class="row no-gutters h-100">
+				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+					<div class="login-about">
+						<div class="slogan">
+							<span>Design</span>
+							<span>Made</span>
+							<span>Simple.</span>
+						</div>
+						<div class="about-desc">
+							Quick Chat is an intelligent and communications tool, built for teams. It provides an integrated platform that makes team communication easy and efficient.
+						</div>
+						<a href="index.html" class="know-more">Know More <img src="/img/right-arrow.svg"></a>
+
+					</div>
+				</div>
+				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+					<div class="login-wrapper">
+
+                        <!-- 회원가입 사용자 정보 입력 폼영역 -->
+						<form id="signupForm">
+
+							<div class="login-screen">
+								<div class="login-body">
+									<a href="index.html" class="login-logo">
+										<img src="/img/logo.svg" alt="Quick Chat">
+									</a>
+									<h6>Welcome to Quick Chat App,<br>Create your account.</h6>
+									<div class="field-wrapper">
+										<input type="email" id="email" autofocus>
+										<div class="field-placeholder">Email ID</div>
+									</div>
+									<div class="field-wrapper">
+										<input type="password" id="password">
+										<div class="field-placeholder">Password</div>
+									</div>
+									<div class="field-wrapper">
+										<input type="password" id="confirmPassword">
+										<div class="field-placeholder">Confirm Password</div>
+									</div>
+									<div class="field-wrapper">
+										<input type="text" id="name">
+										<div class="field-placeholder">Name</div>
+									</div>
+									<div class="field-wrapper mb-3">
+										<input type="tel" id="telephone">
+										<div class="field-placeholder">Telephone</div>
+									</div>
+									<div class="actions">
+										<button type="submit" class="btn btn-primary ml-auto">Sign Up</button>
+									</div>
+								</div>
+								<div class="login-footer">
+									<span class="additional-link">Have an account? <a href="/login" class="btn btn-secondary">Login</a></span>
+								</div>
+							</div>
+						
+                        </form>
+					</div>
+				</div>
+			</div>
+			<!-- Row end -->
+
+		</div>
+        <!-- JQuery Library 참조하기 -->
+        <script src="/js/jquery.min.js"></script>
+        <script>
+
+            $("#signupForm").submit(function(){
+                if($("#email").val() == ""){
+                    alert("메일주소를 입력해주세요.");
+                    $("#email").focus();
+                    return false;
+                }
+
+                if($("#password").val() == ""){
+                    alert("기본암호를 입력해주세요.");
+                    $("#password").focus();
+                    return false;
+                }
+
+                if($("#confirmPassword").val() == ""){
+                    alert("암호 확인값을 입력해주세요.");
+                    $("#confirmPassword").focus();
+                    return false;
+                }
+
+                // if($("#password").val() != $("#confirmPassword").val()){
+                //     alert("암호 확인값이 일치하지 않습니다.");
+                //     $("#confirmPassword").val("");
+                //     $("#confirmPassword").focus();
+                //     return false;
+                // }
+
+                if($("#name").val() == ""){
+                    alert("이름을 입력해주세요.");
+                    $("#name").focus();
+                    return false;
+                }
+
+                // 백엔드 REST API로 추출한 회원정보를 JSON 데이터로 AJAX방식을 전송한다.
+
+                var member = {
+                    "email":$("#email").val(),
+                    "password":$("#password").val(),
+                    "name":$("#name").val(),
+                    "telephone":$("#telephone").val(),
+                };
+
+                // Jquery Ajax 메소드를 통해 수집된 프론트엔드 json 데이터를 백엔드 restful  라우팅 메소드로 전달하빈다.
+                // post 타입으로 보내는 경우는 post
+                $.post('/api/member/entry', member).done(function(result){
+                    console.log("회원정보 등록결과 값 출력:", result);
+                    alert("회원가입완료");
+                    location.href="/login"
+                });
+
+                return false;
+            });
+
+
+            
+        </script>
+
+	</body>
+</html>

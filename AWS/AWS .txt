@@ -1,0 +1,5 @@
+AWS 
+
+s3 버킷이름 : leerobin-bucket
+액세스 키: AKIA3FLDZZMULG6QQBGP
+비밀 액세스 키: qlKu3mkyUFxzZAS1Z35WHzjh9+eRkySOsqjpg2rX
