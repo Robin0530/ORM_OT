@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <%- meta%>
     <title>INSPINIA | Main view</title>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
     <link href="/css/style.css" rel="stylesheet">
 
     <!--추가 스타일-->
-
+    <%- style%>
 </head>
 
 <body>
@@ -50,7 +50,7 @@
                         <a href="/article/list"><i class="fa fa-th-large"></i> <span class="nav-label">게시글정보목록</span> </a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">관리자정보조회</span> </a>
+                        <a href="/admin/list"><i class="fa fa-th-large"></i> <span class="nav-label">관리자정보조회</span> </a>
                     </li>
                 </ul>
             </div>

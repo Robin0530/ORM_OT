@@ -5,6 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var expressLayouts = require('express-ejs-layouts');
 
+//express기반 서버세션 관리 팩키지 참조하기 
+var session = require('express-session');
+
+
+//CORS 지원위해 패키지참조 
+const cors = require("cors");
+
+//dotenv 어플리케이션 환경설정관리 팩키지 참조 및 구성하기 
+require('dotenv').config();
 
 // 기본 노트프로젝트 템플릿에서 제공하는 기본라우터 파일 참조영역
 var indexRouter = require('./routes/index');
@@ -14,6 +23,7 @@ var usersRouter = require('./routes/users');
 var memberRouter = require('./routes/member.js');
 var channelRouter = require('./routes/channel.js');
 var articleRouter = require('./routes/article.js');
+var adminRouter = require('./routes/admin.js');
 
 // RESAPI 전용 라우터 파일 참조영역
 var channelAPIRouter = require('./routes/channel-API.js');
@@ -25,6 +35,34 @@ var app = express();
 
 //mysql과 자동연결처리 및 모델기반 물리 테이블 생성처리제공
 sequelize.sync();
+
+
+//CORS 도메인 지정 허용하기 
+// app.use(
+//   cors({
+//     methods: ["GET", "POST", "DELETE", "OPTIONS"],
+//     origin: ["http://localhost:3000", "https://beginmate.com"],
+//   })
+// );
+
+
+// 모든 호출 허락
+app.use(cors());
+
+// express-session기반 서버세션 설정 구성하기
+app.use(
+  session({
+    resave: false,
+    saveUninitialized: true, 
+    secret: "testsecret", 
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 1000 * 60 * 5 //5분동안 서버세션을 유지하겠다.(1000은 1초)
+    },
+  }),
+);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -58,6 +96,8 @@ app.use('/member', memberRouter);
 app.use('/channel', channelRouter);
 // http://localhost:3000/article
 app.use('/article', articleRouter);
+
+app.use('/admin', adminRouter);
 
 // 채널정보 전용관리 RESTAPI 라우터 파일의 디폴트 url 호출주소를 정의합니다.
 // http://localhost:3000/api/channel
