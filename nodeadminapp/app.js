@@ -5,8 +5,22 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var expressLayouts = require('express-ejs-layouts');
 
+//일회성(휘발성) 데이터를 특정 페이지(뷰)에 전달하는 방식제공 플래시 팩키지참조하기
+var flash = require('connect-flash');
+
+
 //express기반 서버세션 관리 팩키지 참조하기 
 var session = require('express-session');
+
+const passport = require('passport');
+
+//인증관련 패스포트 개발자 정의 모듈참조, 로컬 로그인 전략 적용
+const passportConfig = require('./passport/index.js');
+
+//패스포트 설정처리
+passportConfig(passport);
+
+
 
 
 //CORS 지원위해 패키지참조 
@@ -32,6 +46,11 @@ var channelAPIRouter = require('./routes/channel-API.js');
 var sequelize = require('./models/index.js').sequelize;
 
 var app = express();
+
+
+//flash 메시지 사용 활성화: cookie-parser와 express-session을 사용하므로 이들보다는 뒤로 위치
+app.use(flash());
+
 
 //mysql과 자동연결처리 및 모델기반 물리 테이블 생성처리제공
 sequelize.sync();
@@ -62,6 +81,11 @@ app.use(
     },
   }),
 );
+
+//패스포트-세션 초기화 : express session 뒤에 설정
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 // view engine setup

@@ -4,8 +4,12 @@ var router = express.Router();
 var db = require('../models/index');
 const bcrypt = require('bcryptjs');
 
+//passport 객체 참조
+const passport = require('passport');
+
 // 세션 미들웨어 적용 예시
-const { isLoggedIn, isNotLoggedIn } = require('./sessionMiddleware');
+const { isLoggedIn, isNotLoggedIn } = require('./passportMiddleware');
+
 
 /* 
 - 관리자 웹사이트의 로그인 웹페이지를 제공하는 라우팅 메소드
@@ -13,11 +17,11 @@ const { isLoggedIn, isNotLoggedIn } = require('./sessionMiddleware');
 - http://localhost:3000/login
 */
 router.get('/login', async(req, res, next) => {
-  res.render('login', {layout:"loginLayout", loginResult:""});
+  res.render('login', {layout:"loginLayout", loginResult:"", loginError: req.flash('loginError')});
 });
 
 /*
-- 로그인정보 처리 라우팅메소드
+- 로그인정보 처리 라우팅메소드 - express-session 기반으로 구현
 - 로그인 완료시 서버세션정보를 생성하고 메인페이지로 이동한다.
  */
 router.post('/login', async(req, res, next) => {
@@ -75,6 +79,41 @@ router.post('/login', async(req, res, next) => {
 });
 
 
+/*
+- 로그인정보 처리 라우팅메소드 - passport 로컬인증전략을 통한 로그인 구현
+- 로그인 완료시 서버세션정보를 생성하고 메인페이지로 이동한다.
+ */
+router.post('/passportlogin', async(req, res, next) => {
+  
+  // 패스포트 기반 인증처리 메소드 호출하기
+  passport.authenticate('local', (authError, user, info) => {
+    //인증에러 발생시
+    if (authError) {
+      console.error(authError);
+      return next(authError);
+    }
+
+    if (!user) {
+      req.flash('loginError', info.message);
+      return res.redirect('/login');
+    }
+
+    return req.login(user, (loginError) => {
+      if (loginError) {
+        console.error(loginError);
+        return next(loginError);
+      }
+
+      //정상 로그인시 메인페이지 이동
+      return res.redirect('/');
+    });
+
+  })(req, res, next);
+
+});
+
+
+
 
 /*
 - 관리자 계정으로 로그인 성공 이후에 최초로 보여줄 관리자 웹사이트 메인페이지
@@ -89,12 +128,34 @@ router.get('/', isLoggedIn, async(req, res, next) => {
   // }
 
   // 로그인한 사용자 세션정보 추출해보자
-  var isLogined = req.session.isLogined;
-  var loginUserData = req.session.loginUser;
+  // var isLogined = req.session.isLogined;
+  // var loginUserData = req.session.loginUser;
 
-  console.log("로그인 세션정보 추출하기:", loginUserData);
+  // console.log("로그인 세션정보 추출하기:", loginUserData);
+
+  //패스포트방식으로 생성된 세션정보 조회하기
+  var loginUserData = req.session.passport.user;
 
   res.render('index', {loginUserData});
+});
+
+
+//로그아웃기능 구현
+router.get('/logout',function(req,res,next){
+
+  req.logout(function(err){
+    if(err){
+      return next(err);
+    }
+
+    req.session.destroy();
+    res.redirect('/login');
+
+  });
+
+  // req.logout();
+  // req.session.destroy();
+  // res.redirect('/login');
 });
 
 

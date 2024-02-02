@@ -4,7 +4,9 @@ const AES = require("mysql-aes");
 
 
 //권한 미들웨어 참조 
-const { isLoggedIn, isNotLoggedIn } = require('./sessionMiddleware');
+// const { isLoggedIn, isNotLoggedIn } = require('./sessionMiddleware');
+
+const { isLoggedIn, isNotLoggedIn } = require('./passportMiddleware');
 
 
 //파일 업로드 지원 노드팩키지 참조 

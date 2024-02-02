@@ -10,7 +10,7 @@
         <h3>관리자 웹사이트에 오신걸 환영합니다.</h3>
 
         <p>관리자 아이디/암호를 입력해주세요</p>
-        <form class="m-t" role="form" method="post" action="/login">
+        <form class="m-t" role="form" method="post" action="/passportlogin">
             <div class="form-group">
                 <input type="text" id="adminId" name="adminId" class="form-control" placeholder="Username" required="">
             </div>
@@ -31,9 +31,17 @@
 
   var loginResult = "<%=loginResult%>";
 
+  var loginError = "<%=loginError%>";
+
   // 로그인 결과 메시지의 값이 존재하는 경우: 로그인에러 메시지가 전달됨
   if(loginResult.length > 0) {
     alert(loginResult);
   }
+
+  // 패스포트 방식으로 로그인시 아이디/암호에 문제가 있는경우 메시지 출력
+  if(loginError.length > 0) {
+  alert(loginError);
+}
+
 
 </script>
